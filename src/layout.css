@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  margin: 130px 0px 90px;
+
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 39px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.layout {
+  box-sizing: border-box;
+  max-width: 800px;
+
+  padding: 20px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+
+  width: 100%;
+}

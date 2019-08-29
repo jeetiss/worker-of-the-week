@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "worker-of-the-week",
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build" },
+    { "src": "api/index.js", "use": "@now/node" }
+  ],
+  "routes": [{ "src": "/api/contributions", "dest": "api/index.js" }]
+}

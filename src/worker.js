@@ -1,10 +1,14 @@
 import React from "react";
 import "./worker.css";
 
-export default ({ username, avatar }) => (
-  <div className='worker'>
+export default ({ username, avatar, url, strength }) => (
+  <div className="worker">
     <img src={avatar} alt="user face" />
 
-    <div>{username}</div>
+    <a href={url} target="_blank">
+      {username}
+    </a>
+
+    <div>{strength}</div>
   </div>
 );

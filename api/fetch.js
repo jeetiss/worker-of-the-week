@@ -9,10 +9,11 @@ const isBefore = require("date-fns/isBefore");
 const parse = require("date-fns/parse");
 
 const lastFullWeekStart = startOfWeek(subWeeks(new Date(), 1));
-const lastFullWeekEnd = addHours(endOfWeek(lastFullWeekStart), 1);
+const lastFullWeekEnd = endOfWeek(lastFullWeekStart);
 
 const lastWeek = date =>
-  isAfter(date, lastFullWeekStart) && isBefore(date, lastFullWeekEnd);
+  isAfter(date, lastFullWeekStart) &&
+  isBefore(date, addHours(lastFullWeekEnd, 1));
 
 const getUserContributions = async user => {
   const url = `https://www.github.com/${user}`;
@@ -39,21 +40,22 @@ const getStars = async () => {
   const response = await get("https://api.github.com/orgs/uploadcare/members");
   const members = JSON.parse(response.body);
 
-  const contributions = await getUserContributions(members[0].login);
-
   const data = await Promise.all(
-    members.map(async member => {
-      const strength = await getUserContributions(member.login);
+    members
+      .filter(member => member.type === "User")
+      .map(async member => {
+        const strength = await getUserContributions(member.login);
 
-      return {
-        strength,
-        username: member.login,
-        avatar: member.avatar_url
-      };
-    })
+        return {
+          strength,
+          username: member.login,
+          avatar: member.avatar_url,
+          url: member.html_url
+        };
+      })
   );
 
-  return data.sort((a, b) => b.strength - a.strength).slice(0, 3);
+  return data.sort((a, b) => b.strength - a.strength);
 };
 
 module.exports = {

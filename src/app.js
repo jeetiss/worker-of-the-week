@@ -26,7 +26,9 @@ export default () => (
     <Suspense fallback="Loading...">
       <Data>
         {data =>
-          Object.values(data).map((user, index) => <Worker {...user} key={index} />)
+          data.map((user, index) => (
+            <Worker {...user} key={index} />
+          ))
         }
       </Data>
     </Suspense>

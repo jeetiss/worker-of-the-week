@@ -29,8 +29,6 @@ const getUserContributions = async user => {
       const rectElement = $(rect);
       const date = parse(rectElement.data("date") + ' +00', "yyyy-MM-dd x", 0);
 
-      console.log(date, lastWeek(date), rectElement.data("count"));
-
       return sum + (lastWeek(date) ? rectElement.data("count") : 0);
     }, 0);
 

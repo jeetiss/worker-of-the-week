@@ -4,6 +4,7 @@ const subWeeks = require("date-fns/subWeeks");
 const startOfWeek = require("date-fns/startOfWeek");
 const endOfWeek = require("date-fns/endOfWeek");
 const isAfter = require("date-fns/isAfter");
+const subHours = require("date-fns/subHours");
 const isBefore = require("date-fns/isBefore");
 const parse = require("date-fns/parse");
 
@@ -11,7 +12,7 @@ const lastFullWeekStart = startOfWeek(subWeeks(new Date(), 1));
 const lastFullWeekEnd = endOfWeek(lastFullWeekStart);
 
 const lastWeek = date =>
-  isAfter(date, lastFullWeekStart) &&
+  isAfter(date, subHours(lastFullWeekStart, 1)) &&
   isBefore(date, lastFullWeekEnd);
 
 const getUserContributions = async user => {
@@ -27,7 +28,7 @@ const getUserContributions = async user => {
     .reduce((sum, rect) => {
       // Parse contributions value
       const rectElement = $(rect);
-      const date = parse(rectElement.data("date") + ' +00', "yyyy-MM-dd x", 0);
+      const date = parse(rectElement.data("date") + " +00", "yyyy-MM-dd x", 0);
 
       return sum + (lastWeek(date) ? rectElement.data("count") : 0);
     }, 0);

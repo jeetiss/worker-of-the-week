@@ -3,7 +3,6 @@ const cheerio = require("cheerio");
 const subWeeks = require("date-fns/subWeeks");
 const startOfWeek = require("date-fns/startOfWeek");
 const endOfWeek = require("date-fns/endOfWeek");
-const addHours = require("date-fns/addHours");
 const isAfter = require("date-fns/isAfter");
 const isBefore = require("date-fns/isBefore");
 const parse = require("date-fns/parse");
@@ -13,7 +12,7 @@ const lastFullWeekEnd = endOfWeek(lastFullWeekStart);
 
 const lastWeek = date =>
   isAfter(date, lastFullWeekStart) &&
-  isBefore(date, addHours(lastFullWeekEnd, 1));
+  isBefore(date, lastFullWeekEnd);
 
 const getUserContributions = async user => {
   const url = `https://www.github.com/${user}`;
@@ -28,7 +27,9 @@ const getUserContributions = async user => {
     .reduce((sum, rect) => {
       // Parse contributions value
       const rectElement = $(rect);
-      const date = parse(rectElement.data("date"), "yyyy-MM-dd", new Date());
+      const date = parse(rectElement.data("date") + ' +00', "yyyy-MM-dd x", 0);
+
+      console.log(date, lastWeek(date), rectElement.data("count"));
 
       return sum + (lastWeek(date) ? rectElement.data("count") : 0);
     }, 0);

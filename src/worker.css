@@ -16,7 +16,7 @@
   flex: 1;
   padding: 20px 10px;
 
-  font-family: Inter;
+  font-family: Inter, Roboto, sans-serif;
   font-size: 14px;
   line-height: 20px;
   
@@ -29,7 +29,7 @@
 }
 
 .worker > div {
-  font-family: Inter;
+  font-family: Inter, Roboto, sans-serif;
   font-size: 14px;
   line-height: 20px;
 
@@ -79,7 +79,7 @@
 .worker:nth-child(2) > a,
 .worker:nth-child(3) > a {
   flex: 0;
-  font-family: Inter;
+  font-family: Inter, Roboto, sans-serif;
   font-size: 21px;
   line-height: 25px;
   text-align: center;

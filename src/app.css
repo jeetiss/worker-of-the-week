@@ -1,4 +1,20 @@
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://ucarecdn.com/ae756e79-5e3f-47a9-bb37-e47e67f8d1b5/InterRegular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://ucarecdn.com/44e7988a-b810-4c30-b0ee-0cb16c9e9572/InterSemiBold.woff2") format("woff2");
+}
+
 body {
-  font-family: Inter;
+  font-family: 'Inter';
   margin: 0;
 }

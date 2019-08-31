@@ -1,5 +1,6 @@
 .worker {
   display: flex;
+  position: relative;
   align-items: center;
 
   grid-column: 2 / span 4;
@@ -87,10 +88,48 @@
   color: #222222;
 }
 
+.worker:nth-child(1) > div {
+  width: 220px;
+  height: 220px;
+}
+
+.worker:nth-child(2) > div {
+  width: 180px;
+  height: 180px;
+}
+
+.worker:nth-child(3) > div {
+  width: 160px;
+  height: 160px;
+}
+
 .worker:nth-child(1) > div,
 .worker:nth-child(2) > div,
 .worker:nth-child(3) > div {
-  display: none;
+  cursor: default;
+  position: absolute;
+
+  bottom: 75px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(50, 50, 50, 0.6);
+  color: rgba(255, 255, 255, 0.6);
+
+  font-family: Inter, Roboto, sans-serif;
+  font-size: 84px;
+  font-weight: 600;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.worker:nth-child(1) > div:hover,
+.worker:nth-child(2) > div:hover,
+.worker:nth-child(3) > div:hover {
+  opacity: 1;
 }
 
 .worker:nth-child(1) > img {

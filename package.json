@@ -19,7 +19,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "date-fns": "^2.0.1",
-    "got": "^9.6.0",
+    "got": "^11.8.5",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   }
